@@ -37,6 +37,7 @@ Un RPG en primera persona en el que exploras mini-mazmorras inspiradas en locali
 ### Qué lo hace diferente
 - Mapas más concisos y simples para que sea más amena la exploración y poder hacer partidas más cortas.
 - Mayor simplicidad de mecánicas para jugadores menos experimentados en los combates por turnos.
+- Requisitos para poder acabar cada nivel.
 - Uso de "miniminijuegos" para poder realizar ataques.
   
 ## 3. Historia y ambientación
@@ -53,28 +54,65 @@ Llegar al final del camino.
 ![Diagrama del bucle del juego](./graph.png)
 
 ### Condiciones de victoria y derrota
-- Victoria: Consigue una nueva habilidad para un personaje.
+- Victoria: Cumple los requisitos de todos los niveles.
+- Derrota: La vida de los protagonistas baja a cero.
 
 ### Progresión
 Al avanzar en el juego, tanto los enemigos como los protagonistas consiguen mejores ataques para hacer el combate más complejo.
 
 ## 5. Mecánicas
 
-| Mecánica | Descripción | Control | Nivel en el que aparece |
-|----------|-------------|---------|-------------------------|
-| Habilidad aleatoria | | | |
+| Mecánica | Descripción | Donde aparece |
+|----------|-------------|---------------|
+| Habilidad nueva | El usuario elige una habilidad extra para un protagonista. | Al finalizar cada combate. |
+| Objeto recogible | Objeto escondido en el mapa requerido para completar en nivel. | Triacastela y Arzúa |
+| Muro falso | Muro con textura distinta que se puede atravesar, el cual no se muestra como muro en el minimapa. | Portomarín y Santiago |
+| Casilla de teletransporte | Teletransporta al grupo al inicio del nivel | Palas de Rei |
+
+
 
 ## 6. Controles
 
 | Acción | Teclado | Mando |
 |--------|---------|-------|
-| | | |
+| Ir hacia delante | `W` o `Flecha arriba` | Cruceta arriba |
+| Ir hacia atrás | `S` o `Flecha abajo` | Cruceta abajo |
+| Rotar hacia la izquierda | `A` o `Flecha izquierda` | Cruceta izquierda |
+| Rotar hacia la derecha | `D` o `Flecha derecha` | Cruceta derecha |
+| Ir hacia la izquierda | `Q` | Botón `L1` o Gatillo `izquierda` |
+| Ir hacia la derecha | `E` | Botón `R1` o Gatillo `derecha` |
+| Interactuar | `Intro` | Botón `A` |
+| Volver al menú anterior | `Escape` | Botón `B` |
+| Menú del equipo | `Espacio` | Botón `Start` |
+
 
 ## 7. Niveles
 
-### Nivel 1: nombre
+| Nivel | Objetivo del nivel | Mecánica | Enemigos | Mapa | Escena de Unity | Duración |
+| --- | --- | --- | --- | --- | --- | --- |
+| O Cebreiro | Derrotar a 3 grupos de enemigos | `Ninguna` |  | --- | --- | 5 minutos |
+| Triacastela | Buscar 1 objeto perdido | `Objeto recogible` |  | --- | --- | 5 - 10 minutos |
+| Sarria | Derrotar a un enemigo poderoso | `Ninguna` |  | --- | --- | 5 - 10 minutos |
+| Portomarín | Escapar del laberinto | `Muro falso` |  | --- | --- | 5 - 10 minutos |
+| Palas de Rei | Escapar del laberinto | `Casilla de teletransporte` |  | --- | --- | 5 - 15 minutos |
+| Melide | Derrotar a un enemigo poderoso | `Ninguna` |  | --- | --- | 5 - 10 minutos |
+| Arzúa | Buscar 3 objetos perdidos | `Objeto recogible` |  | --- | --- | 5 - 10 minutos |
+| Santiago de Compostela | Derrotar al enemigo final | `Muro falso` |  | --- | --- | 10 - 20 minutos |
+| Finisterre | Derrotar al enemigo secreto | `Ninguna` |  | --- | --- | 5 - 10 minutos |
+
 
 ## 8. Personajes y enemigos
+### Personajes disponibles
+#### Herrero
+Personaje con baja cantidad de vida, pero gran ataque. Centrado en atacar con sus propias armas.
+#### Caballero
+Personaje con mucha defensa y ataque decente. Defiende al resto del grupo.
+#### Gaiteiro
+Personaje con muy bajo ataque. Centrado en subir las estadísticas del grupo y bajar las de los enemigos con su música.
+#### Agricultor
+Personaje con alta cantidad de vida y bajo ataque. Cura al grupo lanzándole lo que coseche.
+#### Meiga
+Personaje con alta evasión y poca vida. Revive a los miembros debilitados del grupo y conjura a los enemigos.
 
 ## 9. Interfaz y flujo de pantallas
 
@@ -85,24 +123,43 @@ Al avanzar en el juego, tanto los enemigos como los protagonistas consiguen mejo
 ### Menús
 
 ## 10. Dirección de arte
+Estilo dibujado a mano, con modelos 3D low-poly. Resolución de sprites de 256x256px.
+### Paleta de colores
+
+### Tipografías
+
+### Tablero de referencias (moodboard)
+
+### Justificación de la coherencia
+Los recursos (sprites, modelos, música, etc.) han sido hechos por mí con la paleta de colores mostrada anteriormente.
+Los elementos que no encajaban han sido modificados hasta adecuarse al estilo.
 
 ## 11. Sonido y música
+- Estilo folk-rock con instrumentos del folklore gallego, mezclando así el ambiente medieval con algo más moderno.
+-
+-
+- 
 
 ## 12. Efectos visuales y game feel
+- Cortina vertical al entrar en combate o entrar a un nivel.
+- Degradado a negro al acabar el combate o perder.
+- Iluminación
+- Cámara fija desde el punto de vista del grupo.
+- Partículas al atacar (diferentes con cada enemigo), sprites animados para mayor inmersión.
 
 ## 13. Recursos de terceros
-
-| Recurso | Tipo | Autor | Licencia | Enlace | Dónde se usa |
-|---------|------|-------|----------|--------|--------------|
-| | | | | | |
+No se han usado assets de terceros para ningún apartado del juego. 
+Todos los assets han sido creados por mí.
 
 ## 14. Declaración de uso de IA
+No se ha usado ninguna clase de IA en este proyecto, ni en el código ni en recursos gráficos o sonoros.
 
 ## 15. Aspectos técnicos
 
 ## 16. Diario de desarrollo
 
-### AAAA-MM-DD
+### 2026-10-5
+Se ha añadido un mapa de prueba para probar el movimiento en los niveles. Ha habido problemas con las texturas al importar el primer modelo 3D, pero se ha solucionado con facilidad al aplicar las texturas manualmente.
 
 ## 17. Pruebas con jugadores
 
