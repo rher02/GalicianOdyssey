@@ -26,7 +26,7 @@ Un RPG en primera persona en el que exploras mini-mazmorras inspiradas en locali
 - Nuevas mecánicas de exploración cada pocos niveles.
 
 ### Referencias
-- [Etrian Odyssey](https://en.wikipedia.org/wiki/Etrian_Odyssey_(video_game)): Creación de personajes basados en clases y inspiración para el nombre del juego.
+- [Etrian Odyssey](https://en.wikipedia.org/wiki/Etrian_Odyssey_(video_game)): Creación de personajes basados en clases y inspiración para el nombre y estilo artístico del juego.
 ![Clases del primer Etrian Odyssey](https://tse2.mm.bing.net/th/id/OIP.UM5ayH6T-bTwQfIPN2aWzwHaDt?r=0&rs=1&pid=ImgDetMain&o=7&rm=3)
 - [Shin Megami Tensei: Strange Journey](https://en.wikipedia.org/wiki/Shin_Megami_Tensei:_Strange_Journey): Movimiento y exploración de los mapas.
 ![Primer mapa de Strange Journey](https://cdn.mobygames.com/screenshots/15879341-shin-megami-tensei-strange-journey-nintendo-ds-rescue-random-fel.png)
@@ -43,18 +43,23 @@ La historia se cuenta al inicio de la partida.
 ## 4. Jugabilidad
 
 ### Objetivo
+Llegar al final del camino.
 
 ### Bucle de juego
 
+![Diagrama del bucle del juego](./graph.png)
+
 ### Condiciones de victoria y derrota
+- Victoria: Consigue una nueva habilidad para un personaje.
 
 ### Progresión
+Al avanzar en el juego, tanto los enemigos como los protagonistas consiguen mejores ataques para hacer el combate más complejo.
 
 ## 5. Mecánicas
 
 | Mecánica | Descripción | Control | Nivel en el que aparece |
 |----------|-------------|---------|-------------------------|
-| | | | |
+| Habilidad aleatoria | | | |
 
 ## 6. Controles
 
