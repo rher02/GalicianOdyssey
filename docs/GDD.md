@@ -38,7 +38,6 @@ Un RPG en primera persona en el que exploras mini-mazmorras inspiradas en locali
 - Mapas más concisos y simples para que la exploración sea más amena y poder hacer partidas más cortas.
 - Mayor simplicidad de mecánicas para jugadores menos experimentados en los combates por turnos.
 - Requisitos para poder acabar cada nivel.
-- Uso de "miniminijuegos" para poder realizar ataques.
   
 ## 3. Historia y ambientación
 Un grupo de aventureros gallegos intentarán acabar con los monstruos que moran en pueblos y ciudades gallegas para que los peregrinos puedan hacer el Camino de Santiago.
@@ -109,7 +108,7 @@ Personaje con baja cantidad de vida, pero gran ataque. Centrado en atacar con su
 #### Caballero
 Personaje con mucha defensa y ataque decente. Defiende al resto del grupo.
 #### Gaiteiro
-Personaje con muy bajo ataque. Centrado en subir las estadísticas del grupo y bajar las de los enemigos con su música.
+Personaje con muy bajo ataque. Centrado en subir las estadísticas del grupo.
 #### Agricultor
 Personaje con alta cantidad de vida y bajo ataque. Cura al grupo lanzándole lo que coseche.
 #### Meiga
