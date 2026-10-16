@@ -167,7 +167,6 @@ Se ha añadido un mapa de prueba para probar el movimiento en los niveles. Ha ha
 #### 2026-10-16
 Se ha añadido más detalles al mapa de prueba, mejorando así la estética del nivel.
 Se ha añadido una pantalla de selección de personaje para pruebas.
-Se ha añadido unas skills para probar más adelante (aún no implementado).
 
 ## 17. Pruebas con jugadores
 
