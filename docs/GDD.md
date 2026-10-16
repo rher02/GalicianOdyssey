@@ -18,7 +18,7 @@
 ## 2. Concepto
 
 ### Resumen
-Un RPG en primera persona en el que exploras mini-mazmorras inspiradas en localidades gallegas, mientras que luchas contra enemigos inspirados en el folklore gallego.
+Un RPG en primera persona en el que exploras mini-mazmorras inspiradas en localidades gallegas, mientras que luchas contra enemigos inspirados en el folklore gallego para que los peregrinos puedan hacer el Camino de Santiago.
 
 ### Pilares de diseño
 - Movimiento en casillas.
@@ -35,22 +35,23 @@ Un RPG en primera persona en el que exploras mini-mazmorras inspiradas en locali
 ![Primer mapa de Strange Journey](https://cdn.mobygames.com/screenshots/15879341-shin-megami-tensei-strange-journey-nintendo-ds-rescue-random-fel.png)
 
 ### Qué lo hace diferente
-- Mapas más concisos y simples para que sea más amena la exploración y poder hacer partidas más cortas.
+- Mapas más concisos y simples para que la exploración sea más amena y poder hacer partidas más cortas.
 - Mayor simplicidad de mecánicas para jugadores menos experimentados en los combates por turnos.
 - Requisitos para poder acabar cada nivel.
-- Uso de "miniminijuegos" para poder realizar ataques.
   
 ## 3. Historia y ambientación
 Un grupo de aventureros gallegos intentarán acabar con los monstruos que moran en pueblos y ciudades gallegas para que los peregrinos puedan hacer el Camino de Santiago.
-La historia se cuenta al inicio de la partida.
+
+Los protagonistas son diferentes personajes a elegir, sin historia, simples aventureros.
+
+La historia se cuenta a través de cinemáticas al inicio de cada nivel y al final.
 
 ## 4. Jugabilidad
 
 ### Objetivo
-Llegar al final del camino.
+Llegar al final del camino y eliminar al monstruo final.
 
 ### Bucle de juego
-
 ![Diagrama del bucle del juego](./graph.png)
 
 ### Condiciones de victoria y derrota
@@ -61,7 +62,6 @@ Llegar al final del camino.
 Al avanzar en el juego, tanto los enemigos como los protagonistas consiguen mejores ataques para hacer el combate más complejo.
 
 ## 5. Mecánicas
-
 | Mecánica | Descripción | Donde aparece |
 |----------|-------------|---------------|
 | Habilidad nueva | El usuario elige una habilidad extra para un protagonista. | Al finalizar cada combate. |
@@ -108,7 +108,7 @@ Personaje con baja cantidad de vida, pero gran ataque. Centrado en atacar con su
 #### Caballero
 Personaje con mucha defensa y ataque decente. Defiende al resto del grupo.
 #### Gaiteiro
-Personaje con muy bajo ataque. Centrado en subir las estadísticas del grupo y bajar las de los enemigos con su música.
+Personaje con muy bajo ataque. Centrado en subir las estadísticas del grupo.
 #### Agricultor
 Personaje con alta cantidad de vida y bajo ataque. Cura al grupo lanzándole lo que coseche.
 #### Meiga
@@ -117,13 +117,15 @@ Personaje con alta evasión y poca vida. Revive a los miembros debilitados del g
 ## 9. Interfaz y flujo de pantallas
 
 ### Diagrama de flujo
+![Diagrama desde inicio del juego](./graph2.png)
 
 ### HUD
 
 ### Menús
 
 ## 10. Dirección de arte
-Estilo dibujado a mano, con modelos 3D low-poly. Resolución de sprites de 256x256px.
+Estilo dibujado a mano, con modelos 3D low-poly. Resolución de sprites variable.
+
 ### Paleta de colores
 
 ### Tipografías
@@ -135,10 +137,11 @@ Los recursos (sprites, modelos, música, etc.) han sido hechos por mí con la pa
 Los elementos que no encajaban han sido modificados hasta adecuarse al estilo.
 
 ## 11. Sonido y música
-- Estilo folk-rock con instrumentos del folklore gallego, mezclando así el ambiente medieval con algo más moderno.
--
--
-- 
+- Estilo rock con instrumentos del folklore gallego, mezclando así el ambiente medieval con algo más moderno.
+
+### Lista de pistas de música
+
+### Lista de efectos de sonido
 
 ## 12. Efectos visuales y game feel
 - Cortina vertical al entrar en combate o entrar a un nivel.
@@ -158,8 +161,13 @@ No se ha usado ninguna clase de IA en este proyecto, ni en el código ni en recu
 
 ## 16. Diario de desarrollo
 
-### 2026-10-5
+#### 2026-10-5
 Se ha añadido un mapa de prueba para probar el movimiento en los niveles. Ha habido problemas con las texturas al importar el primer modelo 3D, pero se ha solucionado con facilidad al aplicar las texturas manualmente.
+
+#### 2026-10-16
+Se ha añadido más detalles al mapa de prueba, mejorando así la estética del nivel.
+Se ha añadido una pantalla de selección de personaje para pruebas.
+Se ha añadido unas skills para probar más adelante (aún no implementado).
 
 ## 17. Pruebas con jugadores
 

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42b0356c79d18974a91bd9a76906d01d, type: 3}
+  m_Name: BolaDeFuego
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  skillName: Bola de fuego
+  icon: {fileID: 0}
+  description: Lanza una bola de fuego a 1 enemigo
+  mpCost: 4
+  effectType: 0
+  target: 0
+  power: 13
+  statModifier:
+    attack: 0
+    magic: 0
+    defense: 0
+    evade: 0
+  duration: 1

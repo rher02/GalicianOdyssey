@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dffd56895a34c474cb7708d22e439dd5, type: 3}
+  m_Name: Caballero
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterClassData
+  className: Caballero
+  portrait: {fileID: -133912133, guid: 09e60c1e5063d1c40abc3b791aadce96, type: 3}
+  maxHP: 35
+  maxMP: 26
+  attack: 10
+  magic: 10
+  defense: 20
+  evade: 4
