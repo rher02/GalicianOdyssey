@@ -68,6 +68,7 @@ Al avanzar en el juego, tanto los enemigos como los protagonistas consiguen mejo
 | Objeto recogible | Objeto escondido en el mapa requerido para completar en nivel. | Triacastela y Arzúa |
 | Muro falso | Muro con textura distinta que se puede atravesar, el cual no se muestra como muro en el minimapa. | Portomarín y Santiago |
 | Casilla de teletransporte | Teletransporta al grupo al inicio del nivel | Palas de Rei |
+| Combate por turnos | En los niveles, hay combates por turnos para conseguir habilidades | Todos los niveles |
 
 
 
@@ -155,7 +156,7 @@ No se han usado assets de terceros para ningún apartado del juego.
 Todos los assets han sido creados por mí.
 
 ## 14. Declaración de uso de IA
-No se ha usado ninguna clase de IA en este proyecto, ni en el código ni en recursos gráficos o sonoros.
+Solo se ha usado IA en dudas de código y en
 
 ## 15. Aspectos técnicos
 
