@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Herrero
   m_EditorClassIdentifier: Assembly-CSharp::CharacterClassData
   className: Herrero
-  portrait: {fileID: -133912133, guid: 09e60c1e5063d1c40abc3b791aadce96, type: 3}
+  portrait: {fileID: 21300000, guid: fecba0f1ec7939d46b8c2861eaa6e0d2, type: 3}
+  partyIcon: {fileID: 0}
+  skills: []
   maxHP: 28
   maxMP: 0
   attack: 25
