@@ -169,6 +169,9 @@ Se ha añadido un mapa de prueba para probar el movimiento en los niveles. Ha ha
 Se ha añadido más detalles al mapa de prueba, mejorando así la estética del nivel.
 Se ha añadido una pantalla de selección de personaje para pruebas.
 
+#### 2026-10-23
+Se ha añadido un fondo y sprites del herrero.
+
 ## 17. Pruebas con jugadores
 
 ## 18. Postmortem
