@@ -1,8 +1,9 @@
+
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class CharacterClassSelector : MonoBehaviour
 {
@@ -28,33 +29,33 @@ public class CharacterClassSelector : MonoBehaviour
 
     [Header("Cambio de escena")]
     public string sceneToLoad;
-    public float fadeDuration = 1f;
-
-     private bool changingScene = false;
 
     [Header("Animación")]
     public float animationDuration = 0.25f;
     public float portraitMoveDistance = 800f;
     public float statsMoveDistance = 500f;
 
-    private int currentIndex = 0;
-    private bool isAnimating = false;
-
-    private RectTransform[] icons;
-
     [Header("Selección del equipo")]
     public int maxPartySize = 3;
     public Image[] partyIcons;
 
-    private readonly System.Collections.Generic.List<int> selectedClasses = new System.Collections.Generic.List<int>();
+    private int currentIndex = 0;
+    private bool isAnimating = false;
+    private bool changingScene = false;
 
+    private RectTransform[] icons;
     private Color[] originalIconColors;
 
     private Vector2 portraitOriginalPosition;
     private Vector2 statsOriginalPosition;
 
+    private readonly List<int> selectedClasses = new List<int>();
+
     private void Start()
     {
+        if (!ValidateReferences())
+            return;
+
         icons = classIcons.GetComponentsInChildren<RectTransform>();
 
         icons = System.Array.FindAll(
@@ -75,27 +76,47 @@ public class CharacterClassSelector : MonoBehaviour
         portraitOriginalPosition =
             characterPortrait.rectTransform.anchoredPosition;
 
-        statsOriginalPosition =
-            statsPanel.anchoredPosition;
+        statsOriginalPosition = statsPanel.anchoredPosition;
 
         if (classes.Length == 0 || icons.Length == 0)
-            return;
-
-        int total = Mathf.Min(classes.Length, icons.Length);
-
-        if (total != classes.Length || total != icons.Length)
         {
-            Debug.LogWarning(
-                "El número de clases e imágenes no coincide.");
+            Debug.LogError("No hay clases o iconos asignados.");
+            return;
+        }
+
+        if (classes.Length != icons.Length)
+        {
+            Debug.LogError("El número de clases e iconos no coincide.");
+            return;
         }
 
         UpdateCursor();
         UpdateCharacterDisplay();
+        UpdatePartyIcons();
+
+        Debug.Log("CHARACTER SELECTOR INICIADO");
+    }
+
+    private bool ValidateReferences()
+    {
+        if (classes == null || classIcons == null ||
+            cursor == null || characterPortrait == null ||
+            statsPanel == null || partyIcons == null)
+        {
+            Debug.LogError(
+                "Faltan referencias en CharacterClassSelector."
+            );
+
+            return false;
+        }
+
+        return true;
     }
 
     private void Update()
     {
-        if (isAnimating || classes.Length == 0)
+        if (isAnimating || changingScene ||
+            classes == null || classes.Length == 0)
             return;
 
         if (Input.GetKeyDown(KeyCode.W))
@@ -106,7 +127,8 @@ public class CharacterClassSelector : MonoBehaviour
         {
             ChangeClass(1);
         }
-        else if (Input.GetKeyDown(KeyCode.Return))
+        else if (Input.GetKeyDown(KeyCode.Return) ||
+                 Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             ConfirmSelection();
         }
@@ -126,22 +148,55 @@ public class CharacterClassSelector : MonoBehaviour
 
         selectedClasses.Add(currentIndex);
 
+        Debug.Log("Seleccionado: " + classes[currentIndex].className);
+
         UpdateSelectedClassIcons();
         UpdatePartyIcons();
 
-         if (selectedClasses.Count >= maxPartySize)
+        if (selectedClasses.Count >= maxPartySize)
         {
+            if (!SaveParty())
+                return;
+
             if (!string.IsNullOrEmpty(sceneToLoad))
             {
-                StartCoroutine(FadeAndLoadScene());
+                changingScene = true;
+
+                if (SceneTransitionManager.Instance != null)
+                    SceneTransitionManager.Instance.ChangeScene(sceneToLoad);
+                else
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
             }
             else
             {
-                Debug.LogError(
-                    "No has indicado la escena de destino :(("
-                );
+                Debug.LogError("No has indicado la escena de destino.");
             }
         }
+    }
+
+    private bool SaveParty()
+    {
+        if (PartyManager.Instance == null)
+        {
+            Debug.LogError("PARTYMANAGER NO EXISTE.");
+            return false;
+        }
+
+        List<CharacterData> party = new List<CharacterData>();
+
+        foreach (int index in selectedClasses)
+        {
+            CharacterData character =
+                new CharacterData(classes[index]);
+
+            party.Add(character);
+        }
+
+        PartyManager.Instance.SetParty(party);
+
+        Debug.Log("EQUIPO GUARDADO: " + party.Count);
+
+        return true;
     }
 
     private void CancelSelection()
@@ -149,7 +204,8 @@ public class CharacterClassSelector : MonoBehaviour
         if (selectedClasses.Count == 0)
             return;
 
-        int lastSelected = selectedClasses[selectedClasses.Count - 1];
+        int lastSelected =
+            selectedClasses[selectedClasses.Count - 1];
 
         selectedClasses.RemoveAt(selectedClasses.Count - 1);
 
@@ -158,44 +214,7 @@ public class CharacterClassSelector : MonoBehaviour
         UpdateCursor();
         UpdateSelectedClassIcons();
         UpdatePartyIcons();
-
         UpdateCharacterDisplay();
-    }
-
-    private void UpdateSelectedClassIcons()
-    {
-        for (int i = 0; i < icons.Length; i++)
-        {
-            Image iconImage = icons[i].GetComponent<Image>();
-
-            if (iconImage == null)
-                continue;
-
-            bool selected = selectedClasses.Contains(i);
-
-            iconImage.color = selected
-                ? new Color(0.35f, 0.35f, 0.35f, 1f)
-                : originalIconColors[i];
-        }
-    }
-
-    private void UpdatePartyIcons()
-    {
-        for (int i = 0; i < partyIcons.Length; i++)
-        {
-            if (i < selectedClasses.Count)
-            {
-                partyIcons[i].sprite =
-                    classes[selectedClasses[i]].portrait;
-
-                partyIcons[i].enabled = true;
-            }
-            else
-            {
-                partyIcons[i].sprite = null;
-                partyIcons[i].enabled = false;
-            }
-        }
     }
 
     private void ChangeClass(int direction)
@@ -233,6 +252,40 @@ public class CharacterClassSelector : MonoBehaviour
         evadeText.text = "Evasión: " + data.evade;
     }
 
+    private void UpdateSelectedClassIcons()
+    {
+        for (int i = 0; i < icons.Length; i++)
+        {
+            Image image = icons[i].GetComponent<Image>();
+
+            if (image == null)
+                continue;
+
+            image.color = selectedClasses.Contains(i)
+                ? new Color(0.35f, 0.35f, 0.35f, 1f)
+                : originalIconColors[i];
+        }
+    }
+
+    private void UpdatePartyIcons()
+    {
+        for (int i = 0; i < partyIcons.Length; i++)
+        {
+            if (i < selectedClasses.Count)
+            {
+                partyIcons[i].sprite =
+                    classes[selectedClasses[i]].portrait;
+
+                partyIcons[i].enabled = true;
+            }
+            else
+            {
+                partyIcons[i].sprite = null;
+                partyIcons[i].enabled = false;
+            }
+        }
+    }
+
     private IEnumerator ChangeCharacterAnimation()
     {
         isAnimating = true;
@@ -240,15 +293,14 @@ public class CharacterClassSelector : MonoBehaviour
         Vector2 portraitStart =
             characterPortrait.rectTransform.anchoredPosition;
 
-        Vector2 statsStart =
-            statsPanel.anchoredPosition;
+        Vector2 statsStart = statsPanel.anchoredPosition;
 
-        yield return StartCoroutine(AnimatePanels(
+        yield return AnimatePanels(
             portraitStart,
             portraitStart + Vector2.right * portraitMoveDistance,
             statsStart,
             statsStart + Vector2.down * statsMoveDistance
-        ));
+        );
 
         UpdateCharacterDisplay();
 
@@ -260,68 +312,14 @@ public class CharacterClassSelector : MonoBehaviour
             statsOriginalPosition +
             Vector2.up * statsMoveDistance;
 
-        yield return StartCoroutine(AnimatePanels(
+        yield return AnimatePanels(
             characterPortrait.rectTransform.anchoredPosition,
             portraitOriginalPosition,
             statsPanel.anchoredPosition,
             statsOriginalPosition
-        ));
+        );
 
         isAnimating = false;
-    }
-
-    private IEnumerator FadeAndLoadScene()
-    {
-        changingScene = true;
-
-        // Crear un panel negro que cubra la pantalla.
-        GameObject fadeObject = new GameObject(
-            "FadePanel",
-            typeof(RectTransform),
-            typeof(CanvasRenderer),
-            typeof(Image)
-        );
-
-        fadeObject.transform.SetParent(
-            transform.root,
-            false
-        );
-
-        RectTransform fadeRect =
-            fadeObject.GetComponent<RectTransform>();
-
-        fadeRect.anchorMin = Vector2.zero;
-        fadeRect.anchorMax = Vector2.one;
-        fadeRect.offsetMin = Vector2.zero;
-        fadeRect.offsetMax = Vector2.zero;
-
-        Image fadeImage = fadeObject.GetComponent<Image>();
-        fadeImage.color = new Color(0f, 0f, 0f, 0f);
-
-        Canvas fadeCanvas = fadeObject.AddComponent<Canvas>();
-        fadeCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        fadeCanvas.sortingOrder = 999;
-
-        fadeObject.AddComponent<GraphicRaycaster>();
-
-        float elapsed = 0f;
-
-        while (elapsed < fadeDuration)
-        {
-            elapsed += Time.deltaTime;
-
-            float alpha = Mathf.Clamp01(
-                elapsed / fadeDuration
-            );
-
-            fadeImage.color = new Color(0f, 0f, 0f, alpha);
-
-            yield return null;
-        }
-
-        fadeImage.color = Color.black;
-
-        SceneManager.LoadScene(sceneToLoad);
     }
 
     private IEnumerator AnimatePanels(
@@ -334,11 +332,9 @@ public class CharacterClassSelector : MonoBehaviour
 
         while (elapsed < animationDuration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
 
-            float t = Mathf.Clamp01(
-                elapsed / animationDuration);
-
+            float t = Mathf.Clamp01(elapsed / animationDuration);
             t = Mathf.SmoothStep(0f, 1f, t);
 
             characterPortrait.rectTransform.anchoredPosition =
@@ -350,10 +346,7 @@ public class CharacterClassSelector : MonoBehaviour
             yield return null;
         }
 
-        characterPortrait.rectTransform.anchoredPosition =
-            portraitEnd;
-
-        statsPanel.anchoredPosition =
-            statsEnd;
+        characterPortrait.rectTransform.anchoredPosition = portraitEnd;
+        statsPanel.anchoredPosition = statsEnd;
     }
 }

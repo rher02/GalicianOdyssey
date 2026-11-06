@@ -53,25 +53,39 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Characters\EquipmentData.cs" />
+    <Compile Include="Assets\Scripts\Battles\BattleEnemyUI.cs" />
+    <Compile Include="Assets\Scripts\Battles\BattleManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\MainMenuManager.cs" />
+    <Compile Include="Assets\Scripts\SceneTransitionManager.cs" />
     <Compile Include="Assets\Scripts\Characters\CharacterData.cs" />
+    <Compile Include="Assets\Scripts\Battles\BattleCharacterUI.cs" />
     <Compile Include="Assets\Scripts\Characters\PartyManager.cs" />
     <Compile Include="Assets\Scripts\Characters\CharacterClassSelector.cs" />
     <Compile Include="Assets\Scripts\AssetRotation.cs" />
+    <Compile Include="Assets\Scripts\Battles\BattleSession.cs" />
+    <Compile Include="Assets\Scripts\EncounterManager.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\Battles\BattleData.cs" />
     <Compile Include="Assets\Scripts\Characters\SkillData.cs" />
+    <Compile Include="Assets\Scripts\Battles\MapPositionRestorer.cs" />
+    <Compile Include="Assets\Scripts\Battles\BattleEnemy.cs" />
+    <Compile Include="Assets\Scripts\ScreenTransition.cs" />
     <Compile Include="Assets\Scripts\Characters\CharacterClassData.cs" />
+    <Compile Include="Assets\Scripts\Battles\EnemyData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\ShaderTexto2.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SpaceWarp.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\Shaders\UIGrayscale.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />

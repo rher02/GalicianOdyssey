@@ -22,6 +22,9 @@ public class CharacterData
     public EquipmentData weapon;
     public EquipmentData armor;
 
+    [Header("Estado de combate")]
+    public bool defending;
+
     [Header("Habilidades")]
     public List<SkillData> skills = new List<SkillData>();
 
@@ -37,6 +40,8 @@ public class CharacterData
         maxMP = classData.maxMP;
         currentMP = maxMP;
 
+        defending = false;
+
         attack = classData.attack;
         magic = classData.magic;
         defense = classData.defense;
@@ -44,7 +49,13 @@ public class CharacterData
 
         weapon = null;
         armor = null;
+        
         skills = new List<SkillData>();
+
+        if (classData.skills != null)
+        {
+            skills.AddRange(classData.skills);
+        }
     }
 
     public bool LearnSkill(SkillData skill)

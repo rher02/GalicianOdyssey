@@ -16,12 +16,37 @@ public class Movement : MonoBehaviour
     [Header("Collision")]
     [SerializeField] private LayerMask wallLayer;
 
+    private EncounterManager encounterManager;
     private bool isMoving = false;
 
-    void Update()
+    private void Start()
     {
+        encounterManager = EncounterManager.Instance;
+        isMoving = false;
+
+        Debug.Log("Movement iniciado. EncounterManager: " +
+            (encounterManager != null ? "Encontrado" : "NO encontrado"));
+    }
+
+    private void OnEnable()
+    {
+        isMoving = false;
+    }
+
+    private void Update()
+    {
+        // Recuperar la referencia si todavía no existe.
+        if (encounterManager == null)
+            encounterManager = EncounterManager.Instance;
+
         if (isMoving)
             return;
+
+        if (encounterManager != null &&
+            encounterManager.IsEncounterStarted)
+        {
+            return;
+        }
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -49,16 +74,23 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void TryMove(Vector3 direction)
+    public void UnlockMovement()
     {
-        Vector3 worldDirection =
-            transform.rotation * direction;
+        StopAllCoroutines();
+
+        isMoving = false;
+        encounterManager = EncounterManager.Instance;
+
+        Debug.Log("MOVIMIENTO DESBLOQUEADO");
+    }
+
+    private void TryMove(Vector3 direction)
+    {
+        Vector3 worldDirection = transform.rotation * direction;
 
         Vector3 targetPosition =
-            transform.position +
-            worldDirection * moveDistance;
+            transform.position + worldDirection * moveDistance;
 
-        // Check for a wall.
         if (Physics.Raycast(
             transform.position,
             worldDirection,
@@ -71,15 +103,13 @@ public class Movement : MonoBehaviour
         StartCoroutine(MoveTo(targetPosition));
     }
 
-    IEnumerator MoveTo(Vector3 targetPosition)
+    private IEnumerator MoveTo(Vector3 targetPosition)
     {
         isMoving = true;
 
         Vector3 startPosition = transform.position;
-
         float elapsed = 0f;
 
-        // Smooth movement.
         while (elapsed < moveDuration)
         {
             elapsed += Time.deltaTime;
@@ -98,26 +128,25 @@ public class Movement : MonoBehaviour
 
         transform.position = targetPosition;
 
-        // Small pause before the next action.
+        if (encounterManager != null)
+            encounterManager.RegisterStep();
+
         yield return new WaitForSeconds(actionDelay);
 
         isMoving = false;
     }
 
-    IEnumerator Rotate(float angle)
+    private IEnumerator Rotate(float angle)
     {
         isMoving = true;
 
-        Quaternion startRotation =
-            transform.rotation;
+        Quaternion startRotation = transform.rotation;
 
         Quaternion targetRotation =
-            startRotation *
-            Quaternion.Euler(0f, angle, 0f);
+            startRotation * Quaternion.Euler(0f, angle, 0f);
 
         float elapsed = 0f;
 
-        // Smooth rotation.
         while (elapsed < rotationDuration)
         {
             elapsed += Time.deltaTime;
@@ -136,7 +165,6 @@ public class Movement : MonoBehaviour
 
         transform.rotation = targetRotation;
 
-        // Small pause before the next action.
         yield return new WaitForSeconds(actionDelay);
 
         isMoving = false;
